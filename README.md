@@ -1,4 +1,6 @@
-# Docker Image that Allows Write Access to the Docker Container User on a Persistent Volume
+# Write Access to Docker Volume in Compose
+
+Docker Image that Allows Write Access to the Docker Container User on a Persistent Volume, i.e. to be used in Docker Compose, Docker Swarm, Kubernets.
 
 ## Why This Is Needed
 

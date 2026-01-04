@@ -1,6 +1,19 @@
-version: '3.5'
 services:
 
-  allow-write-access:
+  allow-write-access1:
     image: mwaeckerlin/allow-write-access
     build: .
+    volumes:
+      - sample1:/app/sample1
+      - sample2:/app/sample2
+
+  allow-write-access2:
+    image: mwaeckerlin/allow-write-access
+    build: .
+    volumes:
+      - sample:/app
+
+volumes:
+  sample:
+  sample1:
+  sample2:
