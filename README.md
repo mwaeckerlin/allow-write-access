@@ -15,7 +15,7 @@ Use this as a sidecar container in your docker-compose setup to grant write acce
 
 ```yaml
 services:
-  wp-access-fix:
+  allow-write-access:
     image: mwaeckerlin/allow-write-access:latest
     volumes:
       - app-data:/app
@@ -25,13 +25,13 @@ services:
     volumes:
       - app-data:/app
     depends_on:
-      - wp-access-fix
+      - allow-write-access
 
 volumes:
   app-data:
 ```
 
-The `wp-access-fix` service will change the ownership of the `/app` directory in the shared volume, allowing `your-app` to write to it.
+The `allow-write-access` service will change the ownership of the `/app` directory in the shared volume, allowing `your-app` to write to it.
 
 ### Multiple Volumes
 
@@ -39,7 +39,7 @@ You can attach multiple volumes at or below `/app`:
 
 ```yaml
 services:
-  wp-access-fix:
+  allow-write-access:
     image: mwaeckerlin/allow-write-access:latest
     volumes:
       - vol1:/app/vol1
@@ -51,7 +51,7 @@ services:
       - vol1:/app/vol1
       - vol2:/app/vol2
     depends_on:
-      - wp-access-fix
+      - allow-write-access
 
 volumes:
   vol1:
