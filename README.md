@@ -42,7 +42,9 @@ This will:
 
 ## Environment Variables
 
-- `ALLOW_USER`: Command to execute for permission management (default: should be set to change ownership, e.g., `chown -R somebody:somebody`)
+- `ALLOW_USER`: **(Required)** Command to execute for permission management (e.g., `chown -R somebody:somebody`). This variable must be set when running the container.
+
+  **Security Note**: The content of `ALLOW_USER` is executed directly in the shell. Only use this image in trusted environments where you control the input to this environment variable.
 
 ## Benefits
 
