@@ -33,19 +33,32 @@ volumes:
 
 The `wp-access-fix` service will change the ownership of the `/app` directory in the shared volume, allowing `your-app` to write to it.
 
-### Docker Run
+### Multiple Volumes
 
-You can also run it directly with Docker:
+You can attach multiple volumes at or below `/app`:
 
-```bash
-docker run -v /host/data:/app -e ALLOW_USER="chown -R somebody:somebody" mwaeckerlin/allow-write-access
+```yaml
+services:
+  wp-access-fix:
+    image: mwaeckerlin/allow-write-access:latest
+    volumes:
+      - vol1:/app/vol1
+      - vol2:/app/vol2
+
+  your-app:
+    image: your-app-image
+    volumes:
+      - vol1:/app/vol1
+      - vol2:/app/vol2
+    depends_on:
+      - wp-access-fix
+
+volumes:
+  vol1:
+  vol2:
 ```
 
-## Environment Variables
-
-- `ALLOW_USER`: **(Required)** Command to execute for permission management (e.g., `chown -R somebody:somebody`). This variable must be set when running the container.
-
-  **Security Note**: The content of `ALLOW_USER` is executed directly in the shell. Only use this image in trusted environments where you control the input to this environment variable.
+This image is designed to be used in docker-compose, Docker Swarm, or Kubernetes where the container should not terminate (hence `sleep infinity`).
 
 ## Benefits
 
@@ -66,8 +79,8 @@ docker-compose push
 ## Based On
 
 This image is based on:
-- <a href="https://github.com/mwaeckerlin/very-base">mwaeckerlin/very-base</a> - Minimal Alpine image with user definitions
-- <a href="https://github.com/mwaeckerlin/scratch">mwaeckerlin/scratch</a> - Base image with environment variables like `ALLOW_USER`
+- [mwaeckerlin/very-base](https://github.com/mwaeckerlin/very-base) - Minimal Alpine image with user definitions
+- [mwaeckerlin/scratch](https://github.com/mwaeckerlin/scratch) - Base image with environment variables like `ALLOW_USER`
 
 ## How It Works
 
