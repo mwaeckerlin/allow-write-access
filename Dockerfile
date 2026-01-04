@@ -5,4 +5,4 @@ RUN tar cph /bin/chown /bin/sh /bin/sleep /bin/busybox $(ldd /bin/busybox | sed 
 
 FROM mwaeckerlin/scratch
 COPY --from=build /root/ /
-CMD ["/bin/sh", "-c", "$${ALLOW_USER} /app"]
+CMD ["/bin/sh", "-c", "$${ALLOW_USER} /app && sleep infinity"]
