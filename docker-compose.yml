@@ -1,0 +1,6 @@
+version: '3.5'
+services:
+
+  allow-write-access:
+    image: mwaeckerlin/allow-write-access
+    build: .
