@@ -1,4 +1,4 @@
-# Write Access to Docker Volume in Compose
+# Write Access to Docker Volume
 
 Docker Image that Allows Write Access to the Docker Container User on a Persistent Volume, i.e. to be used in Docker Compose, Docker Swarm, Kubernets.
 
