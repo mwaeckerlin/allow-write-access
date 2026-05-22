@@ -74,8 +74,7 @@ This image is designed to be used in docker-compose, Docker Swarm, or Kubernetes
 Build and push the image:
 
 ```bash
-docker-compose build
-docker-compose push
+npm run build
 ```
 
 ## Based On
